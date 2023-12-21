@@ -5,11 +5,12 @@ const multerConfig = require("./config/multer")
 const Post = require("./models/Post")
 
 rout.post("/post", multer(multerConfig).single("file"), async (req, res) => {
+    console.log(req.file);
     const post = await Post.create({
         name: req.file.originalname,
-        src: req.file.path,
-        key: req.file.filename
-    })
+        src: req.file.location,
+        key: req.file.key
+    });
 
     await post.save();
 
