@@ -22,9 +22,16 @@ const numeroSeguidor = async (email) => {
     return result.length;
 }
 
+const numeroSeguindo = async (email) => {
+    let result = await connection.execute("SELECT * FROM segue WHERE fk_usuario_email = ?", [email]);
+    result = result[0];
+    return result.length;
+}
+
 module.exports = {
     registrar,
     procurarEmail,
     seguir,
-    numeroSeguidor
+    numeroSeguidor,
+    numeroSeguindo
 }

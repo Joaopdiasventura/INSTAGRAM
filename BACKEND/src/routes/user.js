@@ -9,5 +9,6 @@ user.post("/logar", midle.logar, controller.login)
 
 user.post("/seguir", midle.seguir, controller.seguir)
 user.post("/numSeguidor", midle.email, controller.numeroSeguidor)
+user.post("/numSeguindo", midle.email, controller.numeroSeguindo)
 
 module.exports = user;

@@ -52,9 +52,16 @@ const numeroSeguidor = async (req, res) => {
   return res.send(`${result}`);
 }
 
+const numeroSeguindo = async (req, res) => {
+  const result = await model.numeroSeguindo(req.body.email);
+  
+  return res.send(`${result}`);
+}
+
 module.exports = {
   registro,
   login,
   seguir,
-  numeroSeguidor
+  numeroSeguidor,
+  numeroSeguindo
 };
