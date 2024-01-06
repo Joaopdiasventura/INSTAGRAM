@@ -4,6 +4,7 @@ const crypto = require("crypto");
 const multerS3 = require("multer-s3");
 const aws = require("aws-sdk");
 const { S3Client } = require("@aws-sdk/client-s3");
+require("dotenv").config();
 
 const s3Client = new S3Client({
   region: process.env.AWS_DEFAULT_REGION,
