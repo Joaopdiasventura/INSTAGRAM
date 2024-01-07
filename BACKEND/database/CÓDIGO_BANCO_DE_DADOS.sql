@@ -5,7 +5,7 @@ CREATE TABLE usuario (
 );
 
 CREATE TABLE postagem (
-    id NUMERIC PRIMARY KEY,
+    id NUMERIC AUTO_INCREMENT PRIMARY KEY,
     url_imagem VARCHAR,
     descricao VARCHAR,
     dt_criacao DATE,

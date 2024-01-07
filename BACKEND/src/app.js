@@ -2,20 +2,25 @@ const express = require("express");
 const morgan = require("morgan");
 const session = require("express-session");
 const passport = require("passport");
+const cors = require("cors");
 const posts = require("./routes/posts");
 const user = require("./routes/user");
-const logar = require("./config/passport")
+const logar = require("./config/passport");
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 require("dotenv").config();
 
-app.use(session({
-  secret: 'Jpplay2_0',
-  resave: true,
-  saveUninitialized: true
-}));
+app.use(
+  session({
+    secret: "Jpplay2_0",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

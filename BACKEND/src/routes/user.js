@@ -1,14 +1,15 @@
 const user = require("express").Router();
-const multer = require("multer");
-const bcrypt = require("bcrypt");
-const midle = require("../midlewares/user")
+const midle = require("../midlewares/user");
 const controller = require("../controllers/userControler");
 
-user.post("/registrar", midle.registrar, controller.registro);
-user.post("/logar", midle.logar, controller.login)
+user.post("/registrar", controller.registro);
+user.post("/logar", controller.login);
 
-user.post("/seguir", midle.seguir, controller.seguir)
-user.post("/numSeguidor", midle.email, controller.numeroSeguidor)
-user.post("/numSeguindo", midle.email, controller.numeroSeguindo)
+user.post("/seguir", midle.seguir, controller.seguir);
+
+user.get("/numSeguidor", midle.email, controller.numeroSeguidor);
+user.get("/numSeguindo", midle.email, controller.numeroSeguindo);
+
+user.post("/sendEmail", controller.enviarEmail);
 
 module.exports = user;

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="https://icones.pro/wp-content/uploads/2021/02/instagram-icone-rouge.png">
+    <title>LOGIN</title>
+</head>
+
+<body>
+    <h1 class="ti">BEM VINDO AO INSTA <small>(do vulgo jp)</small></h1>
+    <div class="container" id="container">
+        <div id="email">
+            <p id="close">X</p> 
+            <form id="emailc">
+                <h2>DIGITE O CÓDIGO DE VERIFICAÇÃO</h2> <br>
+                <input type="number" id="code" placeholder="código" required>
+                <input type="submit" value="VERIFICAR">
+            </form>
+        </div>
+        <div class="form-container sign-up">
+            <form id="registrar">
+                <h1>CRIE SUA CONTA</h1>
+                <input type="text" placeholder="Nome:" id="nome" name="nome" required>
+                <input type="email" placeholder="Email:" id="emailr" name="emailr" required>
+                <input type="password" placeholder="Senha:" id="senhar" name="senhar" required>
+                <input type="password" placeholder="Repita sua senha:" id="senha2" name="senha2" required>
+                <button id="enviar">REGISTRE-SE</button>
+                <p id="msg">REGISTRE-SE</p>
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form id="logar" method="post">
+                <h1>LOGIN</h1>
+                <input type="email" placeholder="Email:" id="emaill" name="emaill" required>
+                <input type="password" placeholder="Senha:" id="senhal" name="senhal" required>
+                <button>LOGIN</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>BEM VINDO DE VOLTA</h1>
+                    <button class="hidden" id="login">LOGAR</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>BEM VINDO</h1>
+                    <p>não tem uma conta?</p>
+                    <button class="hidden" id="register">REGISTRE-SE</button>
+                </div>
+            </div>
+        </div>
+    </div>    
+    <script type="module" src="./script.js"></script>
+    <script type="module" src="./requisicao.js"></script>
+</body>
+
+</html>
