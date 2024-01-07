@@ -1,6 +1,6 @@
 const sendEmail = async (email) => {
     try {
-        const response = await fetch(`http://localhost:3000/sendEmail`, {
+        const response = await fetch(`https://insta-8m9t.onrender.com/sendEmail`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -28,7 +28,7 @@ const registrar = async (cod, code, name, email, senha) => {
             return "CÓDIGO DE VERIFICAÇÃO INCORRETO";
         }
         
-        const response = await fetch(`http://localhost:3000/registrar`, {
+        const response = await fetch(`https://insta-8m9t.onrender.com/registrar`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -53,7 +53,7 @@ const logar = async (email, senha) => {
 
     try {
         
-        const response = await fetch(`http://localhost:3000/logar`, {
+        const response = await fetch(`https://insta-8m9t.onrender.com/logar`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
