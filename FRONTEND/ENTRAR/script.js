@@ -41,11 +41,12 @@ document.getElementById("emailc").addEventListener("submit", async (event) => {
   }, 1000);
 });
 
-document.getElementById("logar").addEventListener("submit", async () => {
+document.getElementById("logar").addEventListener("submit", async (event) => {
+  event.preventDefault();
   const email = document.getElementById("emaill").value;
   const senha = document.getElementById("senhal").value;
 
-  const logar = await req.logar(result.email, senha);
+  const logar = await req.logar(email, senha);
 
   localStorage.setItem('dadosUsuario', JSON.stringify(logar));
 
