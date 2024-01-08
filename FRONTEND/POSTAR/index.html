@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://icones.pro/wp-content/uploads/2021/02/instagram-icone-rouge.png">
+    <link rel="stylesheet" href="./style.css">
+    <title>POSTAR</title>
+</head>
+<body>
+    <div id="content">
+        <form>
+            <div id="picture">
+                <img id="preview" src="https://icones.pro/wp-content/uploads/2021/02/icono-de-camara-gris.png">
+            </div>
+            <input type="file" name="file" id="file" required onchange="displayImage()">
+            <textarea name="descricao" id="descricao" cols="30" rows="10" required></textarea>
+            <input type="submit" value="PUBLICAR">
+        </form>
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>
