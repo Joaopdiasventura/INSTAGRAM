@@ -1,5 +1,20 @@
 import req from "./requisicao.js";
 
+document.addEventListener("DOMContentLoaded", async () => {
+    const dados = localStorage.getItem("dadosUsuario");
+  
+    const dadosUsuario = JSON.parse(dados);
+
+    if (dadosUsuario != {}) {
+      const p = document.createElement("p");
+      p.innerHTML = `Olá ${dadosUsuario.nome}`;
+  
+      document.body.appendChild(p);
+    } else {
+      window.location.href = "../ENTRAR/index.html";
+    }
+});
+
 function displayImage() {
     const fileInput = document.getElementById('file');
     const previewImage = document.getElementById('preview');
