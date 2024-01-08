@@ -1,4 +1,12 @@
-const connection = require("./conecction");
+const createConnection  = require("./conecction");
+
+let connection;
+
+const conectar = async () => {
+  connection = await createConnection();
+};
+
+conectar();
 
 const registrar = async (name, email, senha) => {
   const result = await connection.execute(

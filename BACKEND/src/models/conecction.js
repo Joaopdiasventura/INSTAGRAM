@@ -1,11 +1,16 @@
 const mysql = require("mysql2/promise");
-require("dotenv").config();
 
-const connection = mysql.createPool({
-  host: process.env.MYSQL_HOST,
-  user: process.env.MYSQL_USER,
-  password: process.env.MYSQL_PASSWORD,
-  database: process.env.MYSQL_DATABASE,
-});
+async function createConnection() {
+  const url =
+    process.env.MYSQL_HOST;
+  try {
+    const connection = await mysql.createConnection(url);
+    console.log("Conexão com o banco de dados estabelecida com sucesso.");
+    return connection;
+  } catch (error) {
+    console.error("Erro ao conectar ao banco de dados:", error);
+    throw error;
+  }
+}
 
-module.exports = connection;
+module.exports = createConnection;
