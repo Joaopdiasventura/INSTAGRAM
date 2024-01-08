@@ -1,4 +1,4 @@
-const connection = require("../models/conecction");
+const model = require("../models/userModel");
 const bcrypt = require("bcrypt");
 const LocalStrategy = require("passport-local");
 const passport = require("passport");
@@ -8,11 +8,8 @@ module.exports = async function logar() {
     new LocalStrategy(
       { usernameField: "email", passwordField: "senha" },
       async (email, senha, done) => {
-        let user = await connection.execute(
-          "SELECT * FROM usuario WHERE email = ?",
-          [email]
-        );
-        user = user[0][0];
+        let user = await model.procurarEmail(email);
+        user = user[0];
 
         if (!user) {
           return done(null, false, { message: "Essa conta não existe" });

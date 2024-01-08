@@ -1,54 +1,56 @@
-const createConnection  = require("./conecction");
+const createConnection = require("./conecction");
 
-let connection;
-
-const conectar = async () => {
-  connection = await createConnection();
+const executarQuery = async (query, params) => {
+  let connection;
+  try {
+    connection = await createConnection();
+    const [rows] = await connection.query(query, params);
+    return rows;
+  } catch (error) {
+    console.error("Erro ao executar a query:", error);
+    throw error;
+  } finally {
+    if (connection) {
+      connection.end();
+    }
+  }
 };
 
-conectar();
-
 const registrar = async (name, email, senha) => {
-  const result = await connection.execute(
+  return await executarQuery(
     "INSERT INTO usuario (nome, email, senha) VALUES (?, ?, ?)",
     [name, email, senha]
   );
-  return result;
 };
 
 const procurarEmail = async (email) => {
-  const result = await connection.execute(
-    "SELECT nome FROM usuario WHERE email = ?",
+  return await executarQuery(
+    "SELECT * FROM usuario WHERE email = ?",
     [email]
   );
-  return result;
 };
 
 const seguir = async (email, email_) => {
-  const result = await connection.execute(
+  return await executarQuery(
     "INSERT INTO segue (fk_usuario_email, fk_usuario_email_) VALUES (?, ?)",
     [email, email_]
   );
-
-  return result;
 };
 
 const numeroSeguidor = async (email) => {
-  let result = await connection.execute(
+  const rows = await executarQuery(
     "SELECT * FROM segue WHERE fk_usuario_email_ = ?",
     [email]
   );
-  result = result[0];
-  return result.length;
+  return rows.length;
 };
 
 const numeroSeguindo = async (email) => {
-  let result = await connection.execute(
+  const rows = await executarQuery(
     "SELECT * FROM segue WHERE fk_usuario_email = ?",
     [email]
   );
-  result = result[0];
-  return result.length;
+  return rows.length;
 };
 
 module.exports = {
