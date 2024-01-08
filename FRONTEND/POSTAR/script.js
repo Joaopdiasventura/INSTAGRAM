@@ -2,15 +2,10 @@ import req from "./requisicao.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
     const dados = localStorage.getItem("dadosUsuario");
-  
+
     const dadosUsuario = JSON.parse(dados);
 
-    if (dadosUsuario != {}) {
-      const p = document.createElement("p");
-      p.innerHTML = `Olá ${dadosUsuario.nome}`;
-  
-      document.body.appendChild(p);
-    } else {
+    if (dadosUsuario.email == undefined || dadosUsuario.email == null || !dadosUsuario.email) {
       window.location.href = "../ENTRAR/index.html";
     }
 });
