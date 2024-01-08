@@ -53,6 +53,8 @@ document.getElementById("logar").addEventListener("submit", async (event) => {
     console.log(logar);
   }
 
+  window.location.href = "../PAGINA_INICIAL/index.html";
+
 });
 
 document.getElementById("senha2").addEventListener("keyup", () => {
