@@ -49,8 +49,9 @@ document.getElementById("logar").addEventListener("submit", async (event) => {
   const logar = await req.logar(email, senha);
 
   localStorage.setItem('dadosUsuario', JSON.stringify(logar));
-
-  window.location.href = "../PAGINA_INICIAL/index.html"
+  if (!logar || logar == undefined || logar == null) {
+    console.log(logar);
+  }
 
 });
 
