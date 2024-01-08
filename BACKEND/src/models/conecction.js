@@ -1,6 +1,7 @@
 const mysql = require("mysql2/promise");
+require("dotenv").config();
 
-async function createConnection() {
+const createConnection = async () => {
   const url =
     process.env.MYSQL_HOST;
   try {
@@ -11,6 +12,6 @@ async function createConnection() {
     console.error("Erro ao conectar ao banco de dados:", error);
     throw error;
   }
-}
+};
 
 module.exports = createConnection;
