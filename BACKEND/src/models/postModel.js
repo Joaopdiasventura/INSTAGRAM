@@ -1,55 +1,68 @@
 const connection = require("./conecction");
 
-const getAll = async () => {
-  const all = await connection.execute("SELECT * FROM usuario");
-  return all[0];
+const executeQuery = async (query, params) => {
+  let connectionInstance;
+  try {
+    connectionInstance = await connection();
+    const [rows] = await connectionInstance.execute(query, params);
+    return rows;
+  } catch (error) {
+    console.error("Error executing query:", error);
+    throw error;
+  } finally {
+    if (connectionInstance) {
+      connectionInstance.end();
+    }
+  }
 };
 
-const criar = async (descricao, url_imagem, dt_criação, usuario_email) => {
-  const array = [descricao, url_imagem, dt_criação, usuario_email];
-  const result = await connection.execute(
+const getAll = async () => {
+  const result = await executeQuery("SELECT * FROM usuario");
+  return result;
+};
+
+const createPost = async (description, image_url, creation_date, user_email) => {
+  const params = [description, image_url, creation_date, user_email];
+  const result = await executeQuery(
     "INSERT INTO postagem (descricao, url_imagem, dt_criacao, fk_usuario_email) VALUES (?, ?, ?, ?)",
-    array
+    params
   );
 
   return result;
 };
 
 const findUser = async (email) => {
-  console.log(email);
-  const user = await connection.execute(
+  const userQueryResult = await executeQuery(
     "SELECT * FROM usuario WHERE email = ?",
     [email]
   );
-  const posts = await connection.execute(
+
+  const postsQueryResult = await executeQuery(
     "SELECT * FROM postagem WHERE fk_usuario_email = ?",
     [email]
   );
 
-  const result = [user[0][0], posts[0]];
+  const result = [userQueryResult[0][0], postsQueryResult[0]];
 
   return result;
 };
 
 const findAllPosts = async (email) => {
-
-  const user = await connection.execute(
+  const userQueryResult = await executeQuery(
     "SELECT fk_usuario_email_ FROM segue WHERE fk_usuario_email = ?",
     [email]
   );
 
   const posts = [];
-  console.log(user[0]);
 
-  for (let i = 0; i < user[0].length; i++) {
-
-    const post = await connection.execute(
+  for (let i = 0; i < userQueryResult[0].length; i++) {
+    const postQueryResult = await executeQuery(
       "SELECT * FROM postagem WHERE fk_usuario_email = ?",
-      [user[0][i].fk_usuario_email_]
+      [userQueryResult[0][i].fk_usuario_email_]
     );
 
-    for (let j = 0; j < post[0].length; j++) {
-      posts.push(post[0][j]);
+    for (let j = 0; j < postQueryResult[0].length; j++) {
+      posts.push(postQueryResult[0][j]);
     }
   }
 
@@ -58,7 +71,7 @@ const findAllPosts = async (email) => {
 
 module.exports = {
   getAll,
-  criar,
+  createPost,
   findUser,
   findAllPosts,
 };

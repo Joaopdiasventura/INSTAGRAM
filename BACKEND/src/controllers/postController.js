@@ -9,7 +9,7 @@ const send = async (req, res) => {
   const dt_criacao = moment(agora).format("YYYY-MM-DD HH:mm:ss");
   const usuario_email = req.body.email;
 
-  let result = await model.criar(
+  let result = await model.createPost(
     descricao,
     url_imagem,
     dt_criacao,

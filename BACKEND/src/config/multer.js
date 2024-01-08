@@ -52,19 +52,5 @@ module.exports = {
   storage: storageTypes.s3,
   limits: {
     fileSize: 1024 * 1024 * 5,
-  },
-  fileFilter: (req, file, cb) => {
-    let allowedMimes = [
-      "image/jpeg",
-      "image/pjpeg",
-      "image/png",
-      "image/gif",
-    ];
-
-    for (let i = 0; i < allowedMimes.length; i++) {
-      allowedMimes[i] = `${allowedMimes[i]}`;
-    }
-
-    cb(null, true);
-  },
+  }
 };

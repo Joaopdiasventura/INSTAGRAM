@@ -3,7 +3,7 @@ const modulo = require("../models/userModel");
 
 const registrar = async (req, res, next) => {
   if (!req.body.name || req.body.name == undefined || req.body.name == null) {
-    return res.send("Campo nome é obrigatório");
+    return res.send({message: "Campo nome é obrigatório"});
   }
 
   if (
@@ -11,7 +11,7 @@ const registrar = async (req, res, next) => {
     req.body.email == undefined ||
     req.body.email == null
   ) {
-    return res.send("Campo email é obrigatório");
+    return res.send({message: "Campo email é obrigatório"});
   }
 
   if (
@@ -22,18 +22,22 @@ const registrar = async (req, res, next) => {
     return res.send("Campo senha é obrigatório");
   }
 
-  const email = modulo.procurarEmail(req.body.email);
+  const email = await modulo.procurarEmail(req.body.email);
 
-  if (email) {
-    return res.send("Esse email já está cadastrado no sistema... tente outro");
+  if (email[0] || email[0] != undefined || email[0] != null) {
+    return res.send({message: "Esse email já está cadastrado no sistema... tente outro"});
   }
 
   return next();
 };
 
 const logar = (req, res, next) => {
-  if (!req.body.name || req.body.name == undefined || req.body.name == null) {
-    return res.send("Campo nome é obrigatório");
+  if (
+    !req.body.senha ||
+    req.body.senha == undefined ||
+    req.body.senha == null
+  ) {
+    return res.send({message: "Campo senha é obrigatório"});
   }
 
   if (
@@ -41,7 +45,7 @@ const logar = (req, res, next) => {
     req.body.email == undefined ||
     req.body.email == null
   ) {
-    return res.send("Campo email é obrigatório");
+    return res.send({message: "Campo email é obrigatório"});
   }
 
   return next();
@@ -53,7 +57,7 @@ const seguir = async (req, res, next) => {
     req.body.email == undefined ||
     req.body.email == null
   ) {
-    return res.send("Campo email é obrigatório");
+    return res.send({message: "Campo email é obrigatório"});
   }
 
   if (
@@ -61,7 +65,7 @@ const seguir = async (req, res, next) => {
     req.body.email_ == undefined ||
     req.body.email_ == null
   ) {
-    return res.send("Campo email é obrigatório");
+    return res.send({message: "Campo email é obrigatório"});
   }
 
   try {
@@ -75,7 +79,7 @@ const seguir = async (req, res, next) => {
       await connection.execute("DELETE FROM segue WHERE fk_usuario_email = ? and fk_usuario_email_ = ?", [
         req.body.email, req.body.email_
       ]);
-      return res.send("Usuario já segue o outro");
+      return res.send({message: "Usuario já segue o outro"});
     }
 
     return next();
@@ -90,7 +94,7 @@ const email = (req, res, next) => {
     req.body.email_ == undefined ||
     req.body.email_ == null
   ) {
-    return res.send("Campo email é obrigatório");
+    return res.send({message: "Campo email é obrigatório"});
   }
 
   return next();
