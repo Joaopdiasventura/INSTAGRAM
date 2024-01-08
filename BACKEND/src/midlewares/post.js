@@ -7,7 +7,10 @@ const existFile = (req, res, next) => {
     "image/pjpeg",
     "image/png",
     "image/gif",
+    "image/x-icon"
   ];
+
+  console.log(req.body.file);
 
   if (!req.body.email || req.body.email == undefined || req.body.email == null) {
     return res.send({message: "Campo email é obrigatório"});
@@ -18,7 +21,7 @@ const existFile = (req, res, next) => {
   }
   
   if (!req.file || req.file == undefined || req.file == null) {
-    return res.send({message: "Envie uma imagem/gif"});
+    return res.send({message: "Envie um arquivo"});
   }
 
   if (allowedMimes.includes(req.file.mimetype)) {

@@ -9,15 +9,19 @@
 </head>
 <body>
     <div id="content">
-        <form>
+        <form id="form">
+            <h2>CRIE UM POST</h2> <br>
             <div id="picture">
-                <img id="preview" src="https://icones.pro/wp-content/uploads/2021/02/icono-de-camara-gris.png">
-            </div>
-            <input type="file" name="file" id="file" required onchange="displayImage()">
-            <textarea name="descricao" id="descricao" cols="30" rows="10" required></textarea>
+                <input type="file" name="file" id="file" accept="image/*" required>
+                <label for="file" id="file-label">
+                    <img id="preview" src="https://icones.pro/wp-content/uploads/2021/02/icono-de-camara-gris.png" alt="Imagem padrão">
+                </label>
+            </div> <br>
+            <textarea name="descricao" id="descricao" cols="30" rows="10" placeholder="DESCRIÇÃO DA PUBLICAÇÃO" required></textarea> <br>
             <input type="submit" value="PUBLICAR">
         </form>
     </div>
-    <script src="./script.js"></script>
+    <script type="module" src="./script.js"></script>
+    <script type="module" src="./requisicao.js"></script>
 </body>
 </html>

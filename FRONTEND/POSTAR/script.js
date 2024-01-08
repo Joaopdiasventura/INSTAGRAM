@@ -1,3 +1,5 @@
+import req from "./requisicao.js";
+
 function displayImage() {
     const fileInput = document.getElementById('file');
     const previewImage = document.getElementById('preview');
@@ -7,10 +9,10 @@ function displayImage() {
         "image/pjpeg",
         "image/png",
         "image/gif",
+        "image/x-icon"
     ];
 
     const file = fileInput.files[0];
-    console.log(file);
 
     if (file) {
         if (allowedMimes.includes(file.type)) {
@@ -25,3 +27,21 @@ function displayImage() {
         }
     }
 }
+
+document.getElementById("file").addEventListener("change", displayImage);
+
+document.getElementById("form").addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const fileInput = document.getElementById('file');
+    const file = fileInput.files[0];
+    console.log(file);
+    const descricao = document.getElementById('descricao').value;
+    const dados = localStorage.getItem("dadosUsuario");
+    const dadosUsuario = JSON.parse(dados);
+    const email = dadosUsuario.email;
+
+    const result = await req.postar(file, descricao, email);
+
+    console.log(result);
+
+});
