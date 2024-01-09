@@ -38,9 +38,16 @@ const findAllPosts = async (req, res) => {
   return res.send(result);
 };
 
+const user = async (req, res) => {
+  const result = model.user(req.params.email);
+
+  return res.send(result);
+};
+
 module.exports = {
   getAll,
   send,
   findUser,
-  findAllPosts
+  findAllPosts,
+  user
 };

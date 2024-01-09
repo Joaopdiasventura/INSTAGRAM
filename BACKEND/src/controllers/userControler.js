@@ -104,6 +104,14 @@ const enviarEmail = async (req, res) => {
   }
 };
 
+const addFoto = async (req, res) => {
+  const url_imagem = req.file.location;
+  const email = req.body.email;
+
+  const result = await model.addFoto(url_imagem, email);
+
+  return res.send(result);
+};
 
 module.exports = {
   registro,
@@ -111,5 +119,6 @@ module.exports = {
   seguir,
   numeroSeguidor,
   numeroSeguindo,
-  enviarEmail
+  enviarEmail,
+  addFoto
 };

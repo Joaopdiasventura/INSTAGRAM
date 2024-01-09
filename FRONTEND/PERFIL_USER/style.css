@@ -18,7 +18,6 @@ body {
 .content {
   border: 1px solid #595959;
   display: flex;
-  align-items: flex-start;
   justify-content: center;
   flex-direction: column;
   overflow-y: auto;
@@ -32,24 +31,27 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   margin-bottom: 20px;
-  margin-top: 60px;
 }
 
 .profile h2 {
   color: #ffffff;
   margin-bottom: 5px;
+  text-align: center;
 }
 
 .profile small {
   color: #ffffff;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .profile p {
   word-break: break-all;
   text-align: center;
   color: #ffffff;
+  text-align: center;
 }
 
 .posts {
@@ -63,13 +65,18 @@ body {
   width: calc(33.333% - 10px);
   margin-bottom: 15px;
   cursor: pointer;
+  border: 1px solid white;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .post img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
+  width: 100%;  
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  object-fit: cover;
 }
 
 .post:hover {
@@ -85,6 +92,7 @@ input[type="submit"] {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
+  width: 200px;
 }
 
 button:hover,
@@ -143,4 +151,13 @@ textarea {
 
 input[type = "file"]{
     display: none;
+}
+
+#addFoto{
+    display: flex;
+    flex-direction: column;
+}
+
+form{
+    text-align: center;
 }

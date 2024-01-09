@@ -11,4 +11,7 @@ posts.get("/receberUser/:email", controller.findUser);
 
 posts.post("/", controller.getAll);
 
+posts.post("/user/:email", controller.user);
+
+
 module.exports = posts;

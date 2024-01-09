@@ -32,17 +32,13 @@ const createPost = async (description, image_url, creation_date, user_email) => 
 };
 
 const findUser = async (email) => {
-  const userQueryResult = await executeQuery(
-    "SELECT * FROM usuario WHERE email = ?",
-    [email]
-  );
 
   const postsQueryResult = await executeQuery(
     "SELECT * FROM postagem WHERE fk_usuario_email = ?",
     [email]
   );
 
-  const result = [userQueryResult[0][0], postsQueryResult[0]];
+  const result = [postsQueryResult];
 
   return result;
 };
@@ -69,9 +65,18 @@ const findAllPosts = async (email) => {
   return posts;
 };
 
+const user = async (email) => {
+  const result = await executeQuery(
+    "SELECT * FROM usuario",
+    [email]
+  );
+  return result;
+}; 
+
 module.exports = {
   getAll,
   createPost,
   findUser,
   findAllPosts,
+  user
 };

@@ -53,10 +53,20 @@ const numeroSeguindo = async (email) => {
   return rows.length;
 };
 
+const addFoto = async (url, email) => {
+  const result = await executarQuery(
+    "UPDATE usuario SET foto = ? WHERE email = ?",
+    [url, email]
+  );
+
+  return result;
+};
+
 module.exports = {
   registrar,
   procurarEmail,
   seguir,
   numeroSeguidor,
   numeroSeguindo,
+  addFoto
 };

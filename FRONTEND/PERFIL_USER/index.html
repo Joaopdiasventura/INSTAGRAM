@@ -1,109 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css" />
-    <link
-      rel="icon"
-      href="https://icones.pro/wp-content/uploads/2021/02/instagram-icone-rouge.png"
-    />
+    <link rel="icon" href="https://icones.pro/wp-content/uploads/2021/02/instagram-icone-rouge.png" />
     <title>PERFIL</title>
-  </head>
-  <body>
+</head>
+<body>
     <div class="content">
-      <div class="profile">
-        <div id="picture">
-            <input type="file" name="file" id="file" accept="image/*" required>
-            <label for="file" id="file-label">
-                <img id="preview" src="https://icones.pro/wp-content/uploads/2021/02/icono-de-camara-gris.png" alt="Imagem padrão">
-            </label>
+        <div class="profile">
+            <form id="addFoto">
+                <input type="submit" value="ATUALIZAR FOTO" id="upfoto"/>
+            </form>
+            <div id="picture">
+                <input type="file" name="file" id="file" accept="image/*" />
+                <label for="file" id="file-label">
+                    <img id="preview" src="" alt="Imagem padrão" />
+                </label> <br>
+            </div>
+            <h2 id="profileName"></h2>
+            <small id="profileEmail"></small>
+            <p id="profileBio"></p>
+            <br />
+            <button id="show">ADICIONAR BIO</button>
         </div>
-        <h2>Jojo</h2>
-        <small>joaopdiasventura@gmail.com</small>
-        <p>
-          skdlfhgdskljfhglsgkdfjhglksdfjhglkdfjhglksdjfhglksdfjhglksdjglksdjgldksjghlksdjfglksfdjhglksdfh
-        </p> <br>
-        <button id="show">ADICIONAR BIO</button>
-      </div>
 
-      <div class="posts">
-        <div class="post">
-          <img
-            src="https://insta-teste.s3.us-east-1.amazonaws.com/f9042839c78c46d38d241a1d58f5824e-elemorango.jpg"
-          />
-        </div>
-        <div class="post">
-          <img
-            src="https://insta-teste.s3.us-east-1.amazonaws.com/f9042839c78c46d38d241a1d58f5824e-elemorango.jpg"
-          />
-        </div>
-        <div class="post">
-          <img
-            src="https://insta-teste.s3.us-east-1.amazonaws.com/f9042839c78c46d38d241a1d58f5824e-elemorango.jpg"
-          />
-        </div>
-        <div class="post">
-          <img
-            src="https://insta-teste.s3.us-east-1.amazonaws.com/f9042839c78c46d38d241a1d58f5824e-elemorango.jpg"
-          />
-        </div>
-        <div class="post">
-          <img
-            src="https://insta-teste.s3.us-east-1.amazonaws.com/f9042839c78c46d38d241a1d58f5824e-elemorango.jpg"
-          />
-        </div>
-        <div class="post">
-          <img
-            src="https://insta-teste.s3.us-east-1.amazonaws.com/f9042839c78c46d38d241a1d58f5824e-elemorango.jpg"
-          />
-        </div>
-        <div class="post">
-          <img
-            src="https://insta-teste.s3.us-east-1.amazonaws.com/f9042839c78c46d38d241a1d58f5824e-elemorango.jpg"
-          />
-        </div>
-        <div class="post">
-          <img
-            src="https://insta-teste.s3.us-east-1.amazonaws.com/f9042839c78c46d38d241a1d58f5824e-elemorango.jpg"
-          />
-        </div>
-        <div class="post">
-          <img
-            src="https://insta-teste.s3.us-east-1.amazonaws.com/f9042839c78c46d38d241a1d58f5824e-elemorango.jpg"
-          />
-        </div>
-        <div class="post">
-          <img
-            src="https://insta-teste.s3.us-east-1.amazonaws.com/f9042839c78c46d38d241a1d58f5824e-elemorango.jpg"
-          />
-        </div>
-        <div class="post">
-          <img
-            src="https://insta-teste.s3.us-east-1.amazonaws.com/f9042839c78c46d38d241a1d58f5824e-elemorango.jpg"
-          />
-        </div>
-        <div class="post">
-          <img
-            src="https://insta-teste.s3.us-east-1.amazonaws.com/f9042839c78c46d38d241a1d58f5824e-elemorango.jpg"
-          />
-        </div>
-      </div>
+        <div class="posts"></div>
 
-      <div style="display: none">
-        <form>
-          <textarea
-            name="bio"
-            id="bio"
-            cols="30"
-            rows="10"
-            placeholder="BIO"
-          ></textarea>
-          <input type="submit" value="ADICIONAR" />
-        </form>
-      </div>
+        <div style="display: none">
+            <form>
+                <textarea name="bio" id="bio" cols="30" rows="10" placeholder="BIO"></textarea>
+                <input type="submit" value="ADICIONAR" />
+            </form>
+        </div>
     </div>
     <script type="module" src="./script.js"></script>
     <script type="module" src="./requisicao.js"></script>
-  </body>
+</body>
 </html>
