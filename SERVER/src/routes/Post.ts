@@ -3,6 +3,9 @@ import { upload } from "../services/aws";
 import { CreatePostParams } from "../controllers/Post/createPostRepository/protocols";
 import { CreatePostRepository } from "../repositories/Post/createPostRepository/createPost";
 import { CreatePostController } from "../controllers/Post/createPostRepository/createPost";
+import { DeletePostParams } from "../controllers/Post/deletePostRepository/protocols";
+import { DeletePostController } from "../controllers/Post/deletePostRepository/deletePost";
+import { DeletePostRepository } from "../repositories/Post/deletePostRepository/deletePost";
 
 export default async function Post(app: FastifyInstance): Promise<void> {
   app.post(
@@ -28,4 +31,21 @@ export default async function Post(app: FastifyInstance): Promise<void> {
       reply.send({ message: "Arquivo enviado com sucesso!", filename: file });
     }
   );
+
+  app.delete("/post/:id", async (request, reply) => {
+    const Params = request.params as DeletePostParams;
+
+    const deletePostRepository = new DeletePostRepository();
+    const deletePostController = new DeletePostController(deletePostRepository);
+
+    try {
+      const { body, statusCode } = await deletePostController.handle({
+        params: Params,
+      });
+
+      reply.status(statusCode).send(body);
+    } catch (error) {
+      reply.status(500).send(error);
+    }
+  });
 }

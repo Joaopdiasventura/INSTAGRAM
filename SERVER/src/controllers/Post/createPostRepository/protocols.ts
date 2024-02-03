@@ -1,4 +1,4 @@
-import { Post } from "../../../models/post";
+import Post from "../../../models/post";
 import { Message } from "../../protocols";
 
 export interface CreatePostParams {

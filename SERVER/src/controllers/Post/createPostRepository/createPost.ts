@@ -1,4 +1,4 @@
-import { Post } from "../../../models/post";
+import Post from "../../../models/post";
 import { HttpRequest, HttpResponse, IController } from "../../protocols";
 import { CreatePostParams, ICreatePostRepository } from "./protocols";
 

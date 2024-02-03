@@ -3,7 +3,7 @@ import multerS3 from "multer-s3";
 import { S3 } from "@aws-sdk/client-s3";
 import crypto from "crypto";
 
-const s3Client = new S3({
+export const s3Client = new S3({
   region: process.env.AWS_DEFAULT_REGION,
   credentials: {
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
