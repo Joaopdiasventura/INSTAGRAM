@@ -1,0 +1,43 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  email    String @id @map("_id")
+  name     String
+  password String
+  bio      String @default("")
+  foto     String @default("https://icones.pro/wp-content/uploads/2021/02/icono-de-camara-gris.png")
+}
+
+model Post {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId()
+  url_image     String
+  description   String
+  create_at     DateTime @default(now())
+  fk_user_email String
+}
+
+model Follow {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  fk_user_email  String
+  fk_user_email_ String
+}
+
+model Like {
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  fk_user_email String
+  fk_post       String
+}
+
+model Comment {
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  content       String
+  fk_user_email String
+  fk_post       String
+}
