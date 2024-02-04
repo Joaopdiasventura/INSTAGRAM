@@ -13,6 +13,9 @@ import { UpdateBioRepository } from "../repositories/User/updateBioRepository/up
 import { UpdateBioController } from "../controllers/User/updateBioController/updateBio";
 import multer from 'fastify-multer';
 import axios from "axios";
+import { GetUserParams } from "../controllers/User/getUserController/protocols";
+import { GetUserRepository } from "../repositories/User/getUserRepository/getUser";
+import { GetUserController } from "../controllers/User/getUserController/getUser";
 
 
 const storage = multer.memoryStorage();
@@ -118,4 +121,21 @@ export default async function (app: FastifyInstance): Promise<void> {
       reply.status(500).send(error);
     }
   });
+
+  app.get("/user/:email", async (request, reply) => {
+    const Params = request.params as GetUserParams;
+
+    const getUserRepository = new GetUserRepository();
+    const getUserController = new GetUserController(getUserRepository);
+
+    try {
+      const {body, statusCode} = await getUserController.handle({
+        params: Params
+      });
+      reply.code(statusCode).send(body);
+    } catch (error) {
+      reply.code(500).send(error);
+    }
+  });
+  
 }
