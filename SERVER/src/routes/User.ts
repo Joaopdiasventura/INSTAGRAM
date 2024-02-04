@@ -5,18 +5,48 @@ import { RegisterUserController } from "../controllers/User/registerUserControll
 import { LoginUserParams } from "../controllers/User/loginUserController/protocols";
 import { LoginUserRepository } from "../repositories/User/loginUserRepository/loginUser";
 import { LoginUserController } from "../controllers/User/loginUserController/loginUser";
-import multer from 'fastify-multer';
 import { UpdateImageParams } from "../controllers/User/updateImageController/protocols";
 import { UpdateImageRepository } from "../repositories/User/updateImageRepository/updateImage";
 import { UpdateImageController } from "../controllers/User/updateImageController/updateImage";
 import { UpdateBioParams } from "../controllers/User/updateBioController/protocols";
 import { UpdateBioRepository } from "../repositories/User/updateBioRepository/updateBio";
 import { UpdateBioController } from "../controllers/User/updateBioController/updateBio";
+import multer from 'fastify-multer';
+import axios from "axios";
+
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 export default async function (app: FastifyInstance): Promise<void> {
+
+  const Axios = axios.create({
+    baseURL: "https://email-4ocx.onrender.com",
+  });
+
+  app.get("/email/:email", async (request, reply) => {
+    try {
+      const Params = request.params as UpdateBioParams;
+      const cod = (Math.random() * 999).toFixed(0);
+      
+      try {
+        await Axios.post("/", {
+          from: process.env.EMAIL_USER,
+          password: process.env.EMAIL_PASSWORD,
+          to: Params.email,
+          title: "CÓDIGO DE VERIFICAÇÃO DO TWITTER",
+          content: cod,
+        });
+        reply.status(200).send(cod);
+      } catch (error) {
+        reply.send(error);
+      }
+
+    } catch (error) {
+      reply.send("Erro ao enviar o email: " + error);
+    }
+  });
+
   app.post("/register", async (request, reply) => {
     const Body = request.body as RegisterUserParams;
 
