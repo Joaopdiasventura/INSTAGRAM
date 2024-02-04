@@ -9,6 +9,9 @@ import multer from 'fastify-multer';
 import { UpdateImageParams } from "../controllers/User/updateImageController/protocols";
 import { UpdateImageRepository } from "../repositories/User/updateImageRepository/updateImage";
 import { UpdateImageController } from "../controllers/User/updateImageController/updateImage";
+import { UpdateBioParams } from "../controllers/User/updateBioController/protocols";
+import { UpdateBioRepository } from "../repositories/User/updateBioRepository/updateBio";
+import { UpdateBioController } from "../controllers/User/updateBioController/updateBio";
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
@@ -65,9 +68,24 @@ export default async function (app: FastifyInstance): Promise<void> {
 
       reply.code(statusCode).send(body);
     } catch (error) {
-      console.error('Erro ao processar formulário multipart:', error);
-      reply.status(500).send({ status: 'error', message: 'Erro ao processar formulário multipart.' });
+      reply.status(500).send(error);
     }
 
+  });
+
+  app.post("/updateBio", async (request, reply) => {
+    const Body = request.body as UpdateBioParams;
+
+    const updateBioReposiotry = new UpdateBioRepository();
+    const updateBioController = new UpdateBioController(updateBioReposiotry);
+
+    try {
+      const {body, statusCode} = await updateBioController.handle({
+        body: Body
+      });
+      reply.code(statusCode).send(body);
+    } catch (error) {
+      reply.status(500).send(error);
+    }
   });
 }
