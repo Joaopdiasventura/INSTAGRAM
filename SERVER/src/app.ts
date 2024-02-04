@@ -9,6 +9,7 @@ import startServer from "./server";
 import User from "./routes/User";
 import Post from "./routes/Post";
 import Follow from "./routes/Follow";
+import Like from "./routes/Like";
 
 const app = fastify({ logger: true });
 
@@ -25,5 +26,6 @@ app.register(multer.contentParser);
 app.register(User);
 app.register(Post);
 app.register(Follow);
+app.register(Like);
 
 startServer(app);
