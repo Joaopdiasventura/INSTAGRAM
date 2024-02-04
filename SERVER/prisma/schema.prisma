@@ -8,36 +8,51 @@ datasource db {
 }
 
 model User {
-  email    String @id @map("_id")
-  name     String
-  password String
-  bio      String @default("")
-  foto     String @default("https://icones.pro/wp-content/uploads/2021/02/icono-de-camara-gris.png")
+  email     String    @id @map("_id")
+  name      String
+  password  String
+  bio       String    @default("")
+  picture      String    @default("https://icones.pro/wp-content/uploads/2021/02/icono-de-camara-gris.png")
+  posts     Post[]
+  followers Follow[]  @relation("UserFollowers")
+  following Follow[]  @relation("UserFollowing")
+  likes     Like[]
+  comments  Comment[]
 }
 
 model Post {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId()
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId()
   url_image     String
   description   String
-  create_at     DateTime @default(now())
+  create_at     DateTime  @default(now())
   fk_user_email String
+  User          User?     @relation(fields: [userEmail], references: [email])
+  userEmail     String?
+  likes         Like[]
+  comments      Comment[]
 }
 
 model Follow {
   id             String @id @default(auto()) @map("_id") @db.ObjectId
   fk_user_email  String
   fk_user_email_ String
+  User           User?  @relation("UserFollowers", fields: [fk_user_email], references: [email])
+  User_          User?  @relation("UserFollowing", fields: [fk_user_email_], references: [email])
 }
 
 model Like {
   id            String @id @default(auto()) @map("_id") @db.ObjectId
   fk_user_email String
-  fk_post       String
+  fk_post_id    String @db.ObjectId
+  User          User?  @relation(fields: [fk_user_email], references: [email])
+  Post          Post?  @relation(fields: [fk_post_id], references: [id])
 }
 
 model Comment {
   id            String @id @default(auto()) @map("_id") @db.ObjectId
   content       String
   fk_user_email String
-  fk_post       String
+  fk_post_id    String @db.ObjectId
+  User          User?  @relation(fields: [fk_user_email], references: [email])
+  Post          Post?  @relation(fields: [fk_post_id], references: [id])
 }

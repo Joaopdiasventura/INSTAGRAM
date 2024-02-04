@@ -3,7 +3,7 @@ interface User {
     name: string;
     password: string;
     bio: string;
-    foto: string;
+    picture: string;
 }
 
 export default User;
