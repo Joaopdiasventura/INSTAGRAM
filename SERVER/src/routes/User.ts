@@ -19,6 +19,9 @@ import { GetUserController } from "../controllers/User/getUserController/getUser
 import { GetUserPostsParams } from "../controllers/User/getUserPostsController/protocols";
 import { GetUserPostsRepository } from "../repositories/User/getUserPostsRepository/getUserPosts";
 import { GetUserPostsController } from "../controllers/User/getUserPostsController/getUserPosts";
+import { FindUserParams } from "../controllers/User/findUserController/protocols";
+import { FindUserRepository } from "../repositories/User/findUserRepository/findUser";
+import { FindUserController } from "../controllers/User/findUserController/findUser";
 
 
 const storage = multer.memoryStorage();
@@ -151,6 +154,23 @@ export default async function (app: FastifyInstance): Promise<void> {
       const {body, statusCode} = await getUserPostsController.handle({
         params: Params
       });
+      reply.code(statusCode).send(body);
+    } catch (error) {
+      reply.code(500).send(error);
+    }
+  });
+
+  app.get("/find/:name", async (request, reply) => {
+    const Params = request.params as FindUserParams;
+
+    const findUserRepository = new FindUserRepository();
+    const findUserController = new FindUserController(findUserRepository);
+
+    try {
+      const {body, statusCode} = await findUserController.handle({
+        params: Params
+      });
+
       reply.code(statusCode).send(body);
     } catch (error) {
       reply.code(500).send(error);
