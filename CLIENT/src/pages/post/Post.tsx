@@ -35,8 +35,6 @@ function Post() {
           <textarea
             name="descricao"
             id="descricao"
-            cols="30"
-            rows="10"
             placeholder="DESCRIÇÃO DO POST"
             required
           ></textarea>{" "}

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { css } from './Css';
 
 const app = axios.create({
-    baseURL: "https://chat-9549.onrender.com"
+    baseURL: "https://insta-mn2w.onrender.com"
 });
 
 const Body = css();
@@ -46,11 +46,11 @@ function Enter() {
                 localStorage.setItem("token", result);
     
                 setTimeout(() => {
-                    navigate('/chat');
+                    navigate('/start');
                 }, 500);
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             } catch (error: any) {
-                alert("Erro ao logar: " + error.response.data.mensage)
+                alert("Erro ao logar: " + error.response.data.message);
             }
         }
     };
@@ -87,10 +87,11 @@ function Enter() {
                     const result = await app.post("/register", { name, email, password }).then(result => result.data);
                     localStorage.setItem("token", result);
                     setTimeout(() => {
-                        navigate('/chat');
+                        navigate('/start');
                     }, 500);
-                } catch (error) {
-                    console.error("Erro ao registrar:", error);
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                } catch (error: any) {
+                    alert("Erro ao registrar: " + error.response.data.message);
                 }
             } else{
                 alert('As senhas precisam ser iguais!')
