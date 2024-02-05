@@ -26,8 +26,7 @@ model Post {
   description   String
   create_at     DateTime  @default(now())
   fk_user_email String
-  User          User?     @relation(fields: [userEmail], references: [email])
-  userEmail     String?
+  User          User?     @relation(fields: [fk_user_email], references: [email])
   likes         Like[]
   comments      Comment[]
 }

@@ -6,6 +6,9 @@ import { CreatePostController } from "../controllers/Post/createPostRepository/c
 import { DeletePostParams } from "../controllers/Post/deletePostRepository/protocols";
 import { DeletePostController } from "../controllers/Post/deletePostRepository/deletePost";
 import { DeletePostRepository } from "../repositories/Post/deletePostRepository/deletePost";
+import { GetPostsParams } from "../controllers/Post/getPostsController/protocols";
+import { GetPostsRepository } from "../repositories/Post/getPostsRepository/getPosts";
+import { GetPostsController } from "../controllers/Post/getPostsController/getPosts";
 
 export default async function Post(app: FastifyInstance): Promise<void> {
   app.post(
@@ -43,6 +46,24 @@ export default async function Post(app: FastifyInstance): Promise<void> {
         params: Params,
       });
 
+      reply.status(statusCode).send(body);
+    } catch (error) {
+      reply.status(500).send(error);
+    }
+  });
+
+  app.get("/post/:email", async (request, reply) => {
+
+    const Params = request.params as GetPostsParams;
+
+    const getPostsRepository = new GetPostsRepository();
+    const getPostsController = new GetPostsController(getPostsRepository);
+
+    try {
+      const {body, statusCode} = await getPostsController.handle({
+        params: Params
+      });
+      
       reply.status(statusCode).send(body);
     } catch (error) {
       reply.status(500).send(error);
