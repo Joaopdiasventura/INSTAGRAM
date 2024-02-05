@@ -16,6 +16,9 @@ import axios from "axios";
 import { GetUserParams } from "../controllers/User/getUserController/protocols";
 import { GetUserRepository } from "../repositories/User/getUserRepository/getUser";
 import { GetUserController } from "../controllers/User/getUserController/getUser";
+import { GetUserPostsParams } from "../controllers/User/getUserPostsController/protocols";
+import { GetUserPostsRepository } from "../repositories/User/getUserPostsRepository/getUserPosts";
+import { GetUserPostsController } from "../controllers/User/getUserPostsController/getUserPosts";
 
 
 const storage = multer.memoryStorage();
@@ -130,6 +133,22 @@ export default async function (app: FastifyInstance): Promise<void> {
 
     try {
       const {body, statusCode} = await getUserController.handle({
+        params: Params
+      });
+      reply.code(statusCode).send(body);
+    } catch (error) {
+      reply.code(500).send(error);
+    }
+  });
+
+  app.get("/user/posts/:email", async (request, reply) => {
+    const Params = request.params as GetUserPostsParams;
+
+    const getUserPostsRepository = new GetUserPostsRepository();
+    const getUserPostsController = new GetUserPostsController(getUserPostsRepository);
+
+    try {
+      const {body, statusCode} = await getUserPostsController.handle({
         params: Params
       });
       reply.code(statusCode).send(body);
