@@ -1,6 +1,7 @@
 import { FastifyInstance } from "fastify";
 import { DecodeController } from "../controllers/Token/decode";
 import Token from "../models/token";
+import CreateJwt from "../controllers/Token/code";
 
 export default async function Token (app: FastifyInstance) {
 
@@ -15,6 +16,16 @@ export default async function Token (app: FastifyInstance) {
             reply.status(statusCode).send(body);
         } catch (error) {
             reply.status(500).send(error);
+        }
+    });
+
+    app.post("/code", async (request, reply) => {
+        const body = request.body;
+        if (body) {
+            reply.code(201).send(CreateJwt(body));
+        }
+        else{
+            reply.code(400).send({message: "Envie algo"});
         }
     });
 
