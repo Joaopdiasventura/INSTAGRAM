@@ -5,7 +5,6 @@ import fs from "fs";
 export const DeleteFile = async (params: DeleteFileParams) => {
   const urlImage = params.url_image;
   const fileName = urlImage.split("/").pop();
-  const bucketName = "insta-teste";
 
   const localEmptyFilePath = "./local-empty-file.txt";
 
@@ -14,7 +13,7 @@ export const DeleteFile = async (params: DeleteFileParams) => {
   const emptyFileContent = fs.readFileSync(localEmptyFilePath);
 
   const uploadParams = {
-    Bucket: bucketName,
+    Bucket: process.env.AWS_BUCKET,
     Key: fileName,
     Body: emptyFileContent,
   };

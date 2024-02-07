@@ -7,7 +7,7 @@ export const UpdateImage = async (fileObject: File, url_image: string) => {
   const fileName = url_image.split("/").pop();
 
   const uploadParams = {
-    Bucket: "insta-teste",
+    Bucket: process.env.AWS_BUCKET,
     Key: fileName,
     Body: fileObject.buffer
   };
@@ -26,7 +26,7 @@ export const AddImage = async (fileObject: File): Promise<string> => {
     const fileName: string = `${hash.toString('hex')}-${fileObject.originalname}`;
     try {
       const uploadParams = {
-        Bucket: "insta-teste",
+        Bucket: process.env.AWS_BUCKET,
         Key: fileName,
         Body: fileObject.buffer,
         ContentType: fileObject.mimetype

@@ -17,7 +17,7 @@ interface FileWithFilename extends Express.Multer.File {
 
 const storage = multerS3({
   s3: s3Client,
-  bucket: "insta-teste",
+  bucket: process.env.AWS_BUCKET,
   acl: "public-read",
   key: (
     req: any,
