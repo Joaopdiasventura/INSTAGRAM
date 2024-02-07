@@ -70,7 +70,7 @@ nav a {
   transform: translate(-50%, -50%);
 }
 
-.posts {
+.view {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -80,7 +80,7 @@ nav a {
   max-height: 300px;
 }
 
-.post {
+.views {
   width: 100px;
   height: 100px;
   margin-bottom: 15px;
@@ -93,18 +93,17 @@ nav a {
   justify-content: center;
 }
 
-.post img {
+.views img {
   width: 100%;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   object-fit: cover;
 }
 
-.post:hover {
+.views:hover {
   transform: scale(1.1);
 }
 
-button,
-input[type="submit"] {
+#seguir {
   padding: 10px 15px;
   border: none;
   background-color: #000000;
@@ -115,8 +114,7 @@ input[type="submit"] {
   width: 200px;
 }
 
-button:hover,
-input[type="submit"]:hover {
+#seguir:hover {
   background-color: #ffffff;
 }
 
@@ -130,16 +128,7 @@ textarea {
 }
 
 ::-webkit-scrollbar {
-  width: 1px;
-}
-
-::-webkit-scrollbar-track {
-  background: black;
-}
-
-::-webkit-scrollbar-thumb {
-  background: white;
-  border-radius: 100px;
+  display: none;
 }
 
 #picture,
@@ -164,7 +153,6 @@ textarea {
 
 #picture {
   margin-top: 40px;
-  border: 1px solid white;
   margin-bottom: 20px;
 }
 
@@ -199,56 +187,64 @@ nav a {
   text-decoration: none;
 }
 
-.Post {
-  width: 300px;
-  height: auto;
-  border: 1px solid white;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  background-color: #010101;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  border-radius: 10px;
-  display: none;
-}
+.posts {
+      max-height: 500px;
+      overflow-y: auto;
+      border-radius: 10px;
+      .post {
+        background-color: #000000;
+        border: 1px solid #252525;
+        border-radius: 20px;
+        padding: 10px;
+        margin-bottom: 20px;
+        position: relative;
+        color: white;
+        height: 350px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+      }
 
-.Picture {
-  position: relative;
-  width: 100px;
-  height: 100px;
-  border: 1px solid gray;
-  background-image: url("https://insta-teste.s3.us-east-1.amazonaws.com/026547e49332d4bd4c8fc5cf392718ca-vini.jpeg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  margin: 15px;
-}
+      .profile {
+        display: flex;
+        align-items: center;
+        height: 50px;
+        cursor: pointer;
+        width: 100%;
+      }
 
-.Post p {
-  color: white;
-  max-height: 100px;
-  display: flex;
-  overflow-y: auto;
-  word-wrap: break-word;
-  white-space: normal;
-  margin: 15px;
-  align-items: center;
-}
+      .profileImage {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
 
-.Post button {
-  width: 80px;
-  height: 40px;
-  margin: 15px;
-  background-color: #00000000;
-}
+      .postImage {
+        text-align: center;
+        height: 200px;
+        width: 200px;
+        object-fit: cover;
+        border-radius: 5px;
+      }
 
-.Post small {
-  color: white;
-}
+      .postImage:hover {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+      }
+
+      .texts{
+        width: 100%;
+      }
+
+      .like{
+        background: none;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin: 3px;
+      }
+    }
 
 #close {
   position: absolute;

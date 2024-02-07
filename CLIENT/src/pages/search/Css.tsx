@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Body = styled.div`
   * {
@@ -23,7 +23,7 @@ const Body = styled.div`
     justify-content: center;
     flex-direction: column;
     width: 350px;
-    height: auto; 
+    height: auto;
     padding: 20px;
     background-color: #000000;
     overflow: hidden;
@@ -33,7 +33,7 @@ const Body = styled.div`
     display: flex;
     align-items: center;
     margin-bottom: 10px;
-    width: 100%; 
+    width: 100%;
   }
 
   input[type="text"] {
@@ -54,12 +54,12 @@ const Body = styled.div`
   }
 
   #users {
-    width: 100%; 
+    width: 100%;
     position: relative;
-    padding: 10px; 
+    padding: 10px;
     color: white;
-    overflow-y: auto; 
-    max-height: 300px; 
+    overflow-y: auto;
+    max-height: 300px;
   }
 
   .user {
@@ -72,17 +72,21 @@ const Body = styled.div`
     width: calc(100% - 20px); /* Adjust width */
     margin-left: 10px; /* Align with the input's left side */
     margin-right: 10px; /* Align with the input's right side */
-  }  
+  }
 
-  .user:hover{
+  .user:hover {
     scale: 1.05;
   }
 
-  .user img{
+  .user img {
     width: 25px;
     height: 25px;
     margin: 10px;
     border-radius: 50%;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
   }
 `;
 

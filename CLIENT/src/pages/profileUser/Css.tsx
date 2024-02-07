@@ -24,9 +24,19 @@ body {
   justify-content: center;
   flex-direction: column;
   width: 400px;
-  height: 650px;
+  height: 700px;
   padding: 20px;
   background-color: #000000;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+}
+
+nav a {
+  color: gray;
+  text-decoration: none;
 }
 
 .profile {
@@ -37,15 +47,10 @@ body {
   margin-bottom: 20px;
 }
 
-.profile h2 {
-  color: #ffffff;
-  margin-bottom: 5px;
-  text-align: center;
-}
-
+.profile h2,
 .profile small {
   color: #ffffff;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   text-align: center;
 }
 
@@ -58,23 +63,24 @@ body {
   border: none;
 }
 
-.profile textarea::placeholder{
+.profile textarea::placeholder {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
 
-.posts {
+.view {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
   overflow-y: auto;
-  padding: 10px;    
+  padding: 10px;
+  max-height: 300px;
 }
 
-.post {
+.views {
   width: 100px;
   height: 100px;
   margin-bottom: 15px;
@@ -87,18 +93,17 @@ body {
   justify-content: center;
 }
 
-.post img {
-  width: 100%;  
+.views img {
+  width: 100%;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   object-fit: cover;
 }
 
-.post:hover {
-  scale: 1.1;
+.views:hover {
+  transform: scale(1.1);
 }
 
-button,
-input[type="submit"] {
+#seguir, #upfoto, #updateBio {
   padding: 10px 15px;
   border: none;
   background-color: #000000;
@@ -109,9 +114,13 @@ input[type="submit"] {
   width: 200px;
 }
 
-button:hover,
-input[type="submit"]:hover {
+#seguir:hover, #upfoto:hover, #updateBio:hover {
   background-color: #ffffff;
+}
+
+#upfoto, #updateBio{
+  display: none;
+  justify-content: center;
 }
 
 textarea {
@@ -124,62 +133,41 @@ textarea {
 }
 
 ::-webkit-scrollbar {
-  width: 1px;
+  display: none;
 }
 
-::-webkit-scrollbar-track {
-  background: black;
+#picture,
+#preview {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  position: relative;
 }
 
-::-webkit-scrollbar-thumb {
-  background: white;
-  border-radius: 100px;
+#preview {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
 }
 
-#picture, #preview{
-    width: 75px;
-    height: 75px;
-    border-radius: 50%;
-    position: relative;
+#picture {
+  margin-top: 40px;
+  margin-bottom: 20px;
 }
 
-#preview{
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    margin: 0;
-    padding: 0;
-}
-
-#picture{
-    margin-top: 40px;
-    border: 1px solid white;
-    margin-bottom: 20px;
-}
-
-#picture:hover{
-  scale: 1.2;
+#picture:hover {
+  transform: scale(1.2);
   border: none;
 }
 
-input[type = "file"]{
-    display: none;
-}
-
-#addFoto{
-    display: flex;
-    flex-direction: column;
-}
-
-form{
-    text-align: center;
-    text-align: center;
-    margin-top: 20px; 
-    display: none;
+input[type="file"] {
+  display: none;
 }
 
 #addFoto {
@@ -188,23 +176,9 @@ form{
   align-items: center;
 }
 
-#upfoto {
-  width: auto;
-  margin-top: 10px; 
-}
-
-#picture {
-  margin-top: 20px;
-  text-align: center; 
-}
-
-#file-label {
-  display: inline-block;
-}
-
-#addFoto {
+form {
   text-align: center;
-  margin-top: 20px; 
+  margin-top: 20px;
   display: none;
 }
 
@@ -218,56 +192,64 @@ nav a {
   text-decoration: none;
 }
 
-.Post {
-  width: 300px;
-  height: auto;
-  border: 1px solid white;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  background-color: #010101;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  border-radius: 10px;
-  display: none;
-}
+.posts {
+      max-height: 500px;
+      overflow-y: auto;
+      border-radius: 10px;
+      .post {
+        background-color: #000000;
+        border: 1px solid #252525;
+        border-radius: 20px;
+        padding: 10px;
+        margin-bottom: 20px;
+        position: relative;
+        color: white;
+        height: 350px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+      }
 
-.Picture {
-  position: relative;
-  width: 100px;
-  height: 100px;
-  border: 1px solid gray;
-  background-image: url("https://insta-teste.s3.us-east-1.amazonaws.com/026547e49332d4bd4c8fc5cf392718ca-vini.jpeg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  margin: 15px;
-}
+      .profile {
+        display: flex;
+        align-items: center;
+        height: 50px;
+        cursor: pointer;
+        width: 100%;
+      }
 
-.Post p {
-  color: white;
-  max-height: 100px;
-  display: flex;
-  overflow-y: auto;
-  word-wrap: break-word;
-  white-space: normal;
-  margin: 15px;
-  align-items: center;
-}
+      .profileImage {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
 
-.Post button {
-  width: 80px;
-  height: 40px;
-  margin: 15px;
-  background-color: #00000000;
-}
+      .postImage {
+        text-align: center;
+        height: 200px;
+        width: 200px;
+        object-fit: cover;
+        border-radius: 5px;
+      }
 
-.Post small {
-  color: white;
-}
+      .postImage:hover {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+      }
+
+      .texts{
+        width: 100%;
+      }
+
+      .like{
+        background: none;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin: 3px;
+      }
+    }
 
 #close {
   position: absolute;

@@ -102,14 +102,6 @@ const Body = styled.div`
   ::-webkit-scrollbar {
     display: none;
   }
-
-  ::-webkit-scrollbar-track {
-    display: none;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    display: none;
-  }
 `;
 
 export default Body;
