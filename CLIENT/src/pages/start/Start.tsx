@@ -7,7 +7,7 @@ import User from "../../models/user";
 import Post from "../../models/post";
 
 const app = axios.create({
-  baseURL: "http://localhost:10000",
+  baseURL: "https://insta-mn2w.onrender.com",
 });
 
 function Start() {
@@ -22,7 +22,6 @@ function Start() {
       const User = await app
         .get(`/user/${email}`)
         .then((result) => result.data);
-      console.log(User);
       setUser(User);
 
       return result.data as User;
@@ -35,7 +34,6 @@ function Start() {
   const getPosts = async () => {
     try {
       const { email } = await getUser(localStorage.getItem("token"));
-      console.log(email);
 
       const result: Post[] = await app
         .get(`/post/${email}`)
@@ -50,7 +48,6 @@ function Start() {
           .then((result) => result.data);
       }
 
-      console.log(result);
       setPosts(result as Post[]);
     } catch (error) {
       console.error("Error fetching posts:", error);

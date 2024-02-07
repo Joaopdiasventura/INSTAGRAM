@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link } from "react-router-dom";
 import Body from "./Css";
 import { FormEvent, useEffect, useState, useRef } from "react";
@@ -8,7 +7,7 @@ import User from "../../models/user";
 import Post from "../../models/post";
 
 const app = axios.create({
-  baseURL: "http://localhost:10000",
+  baseURL: "https://insta-mn2w.onrender.com",
 });
 
 function ProfileUser() {
@@ -23,7 +22,6 @@ function ProfileUser() {
       const User = await app
         .get(`/user/${email}`)
         .then((result) => result.data);
-      console.log(User);
       setUser(User);
 
       return result.data as User;
@@ -50,8 +48,7 @@ function ProfileUser() {
           .then((result) => result.data);
       }
 
-      console.log(result);
-      setPosts(result as any);
+      setPosts(result as Post[]);
     } catch (error) {
       console.error("Error fetching posts:", error);
     }
@@ -101,12 +98,11 @@ function ProfileUser() {
     }
 
     try {
-      const result = await app.post("/updateImage", formData, {
+      await app.post("/updateImage", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log(result);
       const form = document.getElementById("addFoto");
       if (form) {
         form.style.display = "none";

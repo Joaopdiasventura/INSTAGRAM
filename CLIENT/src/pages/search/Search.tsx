@@ -5,7 +5,7 @@ import User from "../../models/user";
 import axios from "axios";
 
 const app = axios.create({
-  baseURL: "http://localhost:10000",
+  baseURL: "https://insta-mn2w.onrender.com",
 });
 
 function Search() {

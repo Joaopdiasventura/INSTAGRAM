@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link } from "react-router-dom";
 import Body from "./Css";
 import { useEffect, useState } from "react";
@@ -8,7 +7,7 @@ import User from "../../models/user";
 import Post from "../../models/post";
 
 const app = axios.create({
-  baseURL: "http://localhost:10000",
+  baseURL: "https://insta-mn2w.onrender.com",
 });
 
 function ProfileUser() {
@@ -27,7 +26,6 @@ function ProfileUser() {
       const User = await app
         .get(`/user/${email}`)
         .then((result) => result.data);
-      console.log(User);
       setUser(User);
 
       const result2 = await app.post("/decode", { token: search });
@@ -36,13 +34,11 @@ function ProfileUser() {
       const Profile = await app
         .get(`/user/${email2}`)
         .then((result) => result.data);
-      console.log(Profile);
       setProfile(Profile);
 
       const Followers = await app
         .get(`/follower/${email2}`)
         .then((result) => result.data);
-      console.log(Followers);
       setFollower(Followers);
 
       return Profile as User;
@@ -58,7 +54,6 @@ function ProfileUser() {
         localStorage.getItem("token"),
         localStorage.getItem("search")
       );
-      console.log(email);
 
       const result = await app
         .get(`/user/posts/${email}`)
@@ -74,8 +69,7 @@ function ProfileUser() {
         result[i].see = email;
       }
 
-      console.log(result);
-      setPosts(result as any);
+      setPosts(result as Post[]);
     } catch (error) {
       console.error("Error fetching posts:", error);
     }
@@ -91,22 +85,24 @@ function ProfileUser() {
   };
 
   const follow = async () => {
-    await app.post("follow", {fk_user_email: user.email, fk_user_email_: profile.email});
+    await app.post("follow", {
+      fk_user_email: user.email,
+      fk_user_email_: profile.email,
+    });
     const Followers = await app
-    .get(`/follower/${profile.email}`)
-    .then((result) => result.data);
-  console.log(Followers);
-  setFollower(Followers);
-  }
+      .get(`/follower/${profile.email}`)
+      .then((result) => result.data);
+    setFollower(Followers);
+  };
 
   const ifFollow = () => {
     for (let i = 0; i < follower.length; i++) {
       if (follower[i].email == user.email) {
-        return "DEIXAR DE SEGUIR"
+        return "DEIXAR DE SEGUIR";
       }
     }
-    return "SEGUIR"
-  }
+    return "SEGUIR";
+  };
 
   useEffect(() => {
     getPosts();
@@ -129,9 +125,11 @@ function ProfileUser() {
           <h2 id="profileName">{profile.name}</h2>
           <p id="profileBio">{profile.bio}</p>
           <br />
-          {profile.email === user.email ? null : 
-            <button id="seguir" onClick={follow}>{ifFollow()}</button>
-          }
+          {profile.email === user.email ? null : (
+            <button id="seguir" onClick={follow}>
+              {ifFollow()}
+            </button>
+          )}
         </div>
 
         <div className="posts">
