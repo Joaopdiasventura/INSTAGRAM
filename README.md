@@ -18,6 +18,7 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 `AWS_BUCKET = O nome do seu bucket`
 
 `EMAIL_USER = Seu email`
+
 `EMAIL_PASSWORD = A senha do seu email` 
 
 `DATABASE_URL= A url do seu banco de dados`
