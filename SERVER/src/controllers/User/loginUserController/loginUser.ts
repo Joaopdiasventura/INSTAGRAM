@@ -1,4 +1,4 @@
-import CreateJwt from "../../Token/code";
+import { CodeController } from "../../Token/code";
 import bcrypt from "bcrypt";
 import {
   HttpRequest,
@@ -33,10 +33,12 @@ export class LoginUserController implements IController {
           };
         }
       }
+      
+    const codeController = new CodeController();
 
       return {
         statusCode: 200,
-        body: CreateJwt(result),
+        body: (await codeController.handle({body: result})).body,
       };
     } catch (error) {
       return {

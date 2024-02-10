@@ -2,7 +2,7 @@ import User from "../../../models/user";
 import { HttpRequest, HttpResponse, IController } from "../../protocols";
 import { GetFollowersParams, IGetFollowersRepository } from "./protocols";
 
-export default class GetFollowersController implements IController {
+export class GetFollowersController implements IController {
     constructor(private readonly getFollowersRepository: IGetFollowersRepository){}
     async handle(request?: HttpRequest<GetFollowersParams>): Promise<HttpResponse<User[]>> {
         const {params} = request;

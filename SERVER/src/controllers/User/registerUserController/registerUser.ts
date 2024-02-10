@@ -1,7 +1,7 @@
-import CreateJwt from "../../Token/code";
 import bcrypt from "bcrypt";
 import { HttpRequest, HttpResponse, IController } from "../../protocols";
 import { IRegisterUserRepository, RegisterUserParams } from "./protocols";
+import { CodeController } from "../../Token/code";
 
 export class RegisterUserController implements IController {
   constructor(
@@ -24,6 +24,7 @@ export class RegisterUserController implements IController {
       }
     }
 
+
     try {
       const result = await this.registerUserRepository.register(body);
       if ("message" in result) {
@@ -32,9 +33,12 @@ export class RegisterUserController implements IController {
           body: result,
         };
       }
+      
+    const codeController = new CodeController();
+    
       return {
         statusCode: 201,
-        body: CreateJwt(result),
+        body: (await codeController.handle({body: result})).body,
       };
     } catch (error) {
       return {
