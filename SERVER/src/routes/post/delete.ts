@@ -4,22 +4,22 @@ import { DeletePostController } from "../../controllers/Post/deletePostRepositor
 import { DeletePostRepository } from "../../repositories/Post/deletePostRepository/deletePost";
 
 async function Delete(app: FastifyInstance) {
-    app.delete("/post/:id", async (request, reply) => {
-        const Params = request.params as DeletePostParams;
-    
-        const deletePostRepository = new DeletePostRepository();
-        const deletePostController = new DeletePostController(deletePostRepository);
-    
-        try {
-          const { body, statusCode } = await deletePostController.handle({
-            params: Params,
-          });
-    
-          reply.status(statusCode).send(body);
-        } catch (error) {
-          reply.status(500).send(error);
-        }
+  app.delete("/post/:id", async (request, reply) => {
+    const Params = request.params as DeletePostParams;
+
+    const deletePostRepository = new DeletePostRepository();
+    const deletePostController = new DeletePostController(deletePostRepository);
+
+    try {
+      const { body, statusCode } = await deletePostController.handle({
+        params: Params,
       });
+
+      reply.status(statusCode).send(body);
+    } catch (error) {
+      reply.status(500).send(error);
+    }
+  });
 }
 
 export default Delete;

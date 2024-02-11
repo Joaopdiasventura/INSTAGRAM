@@ -2,10 +2,18 @@ import { FastifyInstance } from "fastify";
 import { GetPostsParams } from "../../controllers/Post/getPostsController/protocols";
 import { GetPostsController } from "../../controllers/Post/getPostsController/getPosts";
 import { GetPostsRepository } from "../../repositories/Post/getPostsRepository/getPosts";
+import IsAll from "../../middlewares/user/get";
 
 async function Get(app: FastifyInstance) {
   app.get("/post/:email", async (request, reply) => {
     const Params = request.params as GetPostsParams;
+
+    const validation = IsAll(Params);
+
+    if (validation) {
+      reply.status(validation.statusCode).send(validation.body);
+      return;
+    }
 
     const getPostsRepository = new GetPostsRepository();
     const getPostsController = new GetPostsController(getPostsRepository);

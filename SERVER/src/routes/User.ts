@@ -1,6 +1,6 @@
 import { FastifyInstance } from "fastify";
 import Login from "./user/login";
-import Updates from "./user/updates";
+import Updates from "./user/update";
 import Register from "./user/register";
 import Get from "./user/get";
 

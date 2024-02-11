@@ -1,17 +1,17 @@
 export interface Message {
-    message?: string;
+  message?: string;
 }
 
-export interface HttpResponse <T>{
-    statusCode:number;
-    body: T | Message;
+export interface HttpResponse<T> {
+  statusCode: number;
+  body: T | Message;
 }
 
-export interface HttpRequest <T>{
-    params?: T;
-    body?: T;
+export interface HttpRequest<T> {
+  params?: T;
+  body?: T;
 }
 
 export interface IController {
-    handle(request?: HttpRequest<unknown>): Promise<HttpResponse<unknown>>;
+  handle(request?: HttpRequest<unknown>): Promise<HttpResponse<unknown>>;
 }

@@ -1,9 +1,9 @@
 import User from "../../../models/user";
 
 export interface FindUserParams {
-    name: string;
+  name: string;
 }
 
 export interface IFindUserRepository {
-    find(params: FindUserParams): Promise<User[]>
+  find(params: FindUserParams): Promise<User[]>;
 }

@@ -2,9 +2,9 @@ import Comment from "../../../models/comment";
 import { Message } from "../../protocols";
 
 export interface DeleteCommentParams {
-    comment: string;
+  comment: string;
 }
 
 export interface IDeleteCommentRepository {
-    delete(params: DeleteCommentParams): Promise<Comment | Message>;
+  delete(params: DeleteCommentParams): Promise<Comment | Message>;
 }

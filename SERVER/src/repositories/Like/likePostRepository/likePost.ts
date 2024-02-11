@@ -9,7 +9,6 @@ import prisma from "../../../services/prisma";
 export class LikePostRepository implements ILikePostRepository {
   async like(params: LikePostParams): Promise<Like | Message> {
     try {
-        
       const user = await prisma.user.findUnique({
         where: { email: params.email },
       });

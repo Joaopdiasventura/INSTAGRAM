@@ -20,7 +20,7 @@ export class DeletePostRepository implements IDeletePostRepository {
 
       await DeleteFile(post);
 
-      await prisma.post.delete({ where: {id: post.id } });
+      await prisma.post.delete({ where: { id: post.id } });
       return post;
     } catch (error) {
       return error;

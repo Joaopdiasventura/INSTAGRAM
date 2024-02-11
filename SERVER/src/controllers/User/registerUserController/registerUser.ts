@@ -13,17 +13,6 @@ export class RegisterUserController implements IController {
     const { body } = request;
     const hash = 10;
     body.password = await bcrypt.hash(body.password, hash);
-    const fields = ["email", "password", "name"];
-
-    for (const field of fields) {
-      if (!(field in body)) {
-        return {
-          statusCode: 400,
-          body: { message: `Preencha o campo: ${field}` },
-        };
-      }
-    }
-
 
     try {
       const result = await this.registerUserRepository.register(body);

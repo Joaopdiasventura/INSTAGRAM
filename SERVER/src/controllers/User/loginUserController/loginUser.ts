@@ -22,10 +22,13 @@ export class LoginUserController implements IController {
           body: result,
         };
       }
-      
+
       if ("password" in result) {
-        const passwordConfirm = await bcrypt.compare(body.password, result.password);
-        
+        const passwordConfirm = await bcrypt.compare(
+          body.password,
+          result.password
+        );
+
         if (!passwordConfirm) {
           return {
             statusCode: 400,
@@ -33,12 +36,12 @@ export class LoginUserController implements IController {
           };
         }
       }
-      
-    const codeController = new CodeController();
+
+      const codeController = new CodeController();
 
       return {
         statusCode: 200,
-        body: (await codeController.handle({body: result})).body,
+        body: (await codeController.handle({ body: result })).body,
       };
     } catch (error) {
       return {

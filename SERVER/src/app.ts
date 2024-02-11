@@ -21,7 +21,7 @@ const corsOptions = {
   allowedHeaders: ["Content-Type", "Authorization"],
 };
 
-app.register(cors, corsOptions); 
+app.register(cors, corsOptions);
 
 app.register(multer.contentParser);
 

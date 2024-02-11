@@ -1,5 +1,5 @@
 import {
-    GetCommentParams,
+  GetCommentParams,
   IGetCommentRepository,
 } from "../../../controllers/Comment/getCommentController/protocols";
 import { Message } from "../../../controllers/protocols";

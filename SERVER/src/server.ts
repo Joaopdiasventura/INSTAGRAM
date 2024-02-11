@@ -7,9 +7,6 @@ export default async function startServer(app: FastifyInstance) {
 
     await app.listen({ port, host: "0.0.0.0" });
 
-    const addressInfo = app.server.address() as AddressInfo;
-    const actualPort = addressInfo.port;
-
   } catch (err) {
     console.error(err);
     process.exit(1);

@@ -12,7 +12,7 @@ export class RegisterUserRepository implements IRegisterUserRepository {
       const existUser = await prisma.user.findFirst({
         where: { email: params.email },
       });
-      
+
       if (existUser) {
         return {
           message: "Email já esta registrado no sistema",

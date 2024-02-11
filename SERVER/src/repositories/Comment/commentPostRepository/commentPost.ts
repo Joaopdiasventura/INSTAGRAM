@@ -29,7 +29,7 @@ export class CommentPostRepository implements ICommentPostRepository {
         data: {
           content: params.content,
           fk_user_email: user.email,
-          fk_post_id: post.id
+          fk_post_id: post.id,
         },
       });
 

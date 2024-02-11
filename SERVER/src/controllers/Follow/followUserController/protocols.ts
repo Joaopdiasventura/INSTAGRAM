@@ -7,5 +7,5 @@ export interface FollowUserParams {
 }
 
 export interface IFollowUserRepository {
-    follow(params: FollowUserParams): Promise<Follow | Message>;
+  follow(params: FollowUserParams): Promise<Follow | Message>;
 }
