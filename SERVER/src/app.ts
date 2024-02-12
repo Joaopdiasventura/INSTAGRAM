@@ -10,7 +10,7 @@ import User from "./routes/User";
 import Post from "./routes/Post";
 import Follow from "./routes/Follow";
 import Like from "./routes/Like";
-import Comment from "./routes/Comment";
+//import Comment from "./routes/Comment";
 import Token from "./routes/Token";
 
 const app = fastify({ logger: true });
