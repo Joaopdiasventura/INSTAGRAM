@@ -1,7 +1,7 @@
 import { FastifyInstance } from "fastify";
 import { DeleteCommentController } from "../../controllers/Comment/deleteCommentController/deleteComment";
 import { DeleteCommentParams } from "../../controllers/Comment/deleteCommentController/protocols";
-import { DeleteCommentRepository } from "../../repositories/Comment/deleteCommentRepository/deleteComment";
+import { DeleteCommentRepository } from "../../repositories/Comment/deleteMessageRepository/deleteMessage";
 
 async function Delete(app: FastifyInstance): Promise<void> {
   app.delete("/comment/:comment", async (request, reply) => {

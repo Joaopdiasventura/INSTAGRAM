@@ -1,7 +1,7 @@
 import { FastifyInstance } from "fastify";
 import { CommentPostController } from "../../controllers/Comment/commentPostController/commentPost";
 import { CommentPostParams } from "../../controllers/Comment/commentPostController/protocols";
-import { CommentPostRepository } from "../../repositories/Comment/commentPostRepository/commentPost";
+import { CommentPostRepository } from "../../repositories/Comment/messagePostRepository/messagePost";
 
 async function Post(app: FastifyInstance) {
   app.post("/comment", async (request, reply) => {

@@ -1,7 +1,7 @@
 import { FastifyInstance } from "fastify";
 import { GetCommentController } from "../../controllers/Comment/getCommentController/getComment";
 import { GetCommentParams } from "../../controllers/Comment/getCommentController/protocols";
-import { GetCommentRepository } from "../../repositories/Comment/getCommentRepository/getComment";
+import { GetCommentRepository } from "../../repositories/Comment/getMessageRepository/getMessage";
 
 async function Get(app: FastifyInstance) {
   app.get("/comment/:post", async (request, reply) => {
