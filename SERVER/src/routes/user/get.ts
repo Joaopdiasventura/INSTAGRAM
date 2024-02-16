@@ -8,18 +8,10 @@ import { GetUserPostsParams } from "../../controllers/User/getUserPostsControlle
 import { FindUserRepository } from "../../repositories/User/findUserRepository/findUser";
 import { GetUserPostsRepository } from "../../repositories/User/getUserPostsRepository/getUserPosts";
 import { GetUserRepository } from "../../repositories/User/getUserRepository/getUser";
-import IsAll from "../../middlewares/user/get";
 
 async function Get(app: FastifyInstance) {
   app.get("/user/:email", async (request, reply) => {
     const Params = request.params as GetUserParams;
-
-    const validation = IsAll(Params);
-
-    if (validation) {
-      reply.status(validation.statusCode).send(validation.body);
-      return;
-    }
 
     const getUserRepository = new GetUserRepository();
     const getUserController = new GetUserController(getUserRepository);
@@ -36,13 +28,6 @@ async function Get(app: FastifyInstance) {
 
   app.get("/user/posts/:email", async (request, reply) => {
     const Params = request.params as GetUserPostsParams;
-
-    const validation = IsAll(Params);
-
-    if (validation) {
-      reply.status(validation.statusCode).send(validation.body);
-      return;
-    }
 
     const getUserPostsRepository = new GetUserPostsRepository();
     const getUserPostsController = new GetUserPostsController(

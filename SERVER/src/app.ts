@@ -11,6 +11,7 @@ import Post from "./routes/Post";
 import Follow from "./routes/Follow";
 import Like from "./routes/Like";
 import Token from "./routes/Token";
+import Comment from "./routes/Comment";
 
 const app = fastify({ logger: true });
 
