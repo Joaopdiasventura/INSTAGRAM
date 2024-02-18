@@ -4,7 +4,6 @@ config();
 import fastify from "fastify";
 import multer from "fastify-multer";
 import cors from "@fastify/cors";
-import startServer from "./server";
 
 import User from "./routes/User";
 import Post from "./routes/Post";
@@ -13,11 +12,11 @@ import Like from "./routes/Like";
 import Token from "./routes/Token";
 import Message from "./routes/Message";
 
-const app = fastify({ logger: true });
+const app = fastify({ logger: false });
 
 const corsOptions = {
   origin: [process.env.FRONTEND],
-  methods: ["GET", "PUT", "POST"],
+  methods: ["GET", "DELETE", "POST", "PUT"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
 
@@ -32,4 +31,4 @@ app.register(Like);
 app.register(Message);
 app.register(Token);
 
-startServer(app);
+export default app;

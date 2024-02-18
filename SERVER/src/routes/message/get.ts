@@ -1,7 +1,7 @@
 import { FastifyInstance } from "fastify";
-import { GetCommentController } from "../../controllers/Comment/getCommentController/getComment";
-import { GetCommentParams } from "../../controllers/Comment/getCommentController/protocols";
-import { GetCommentRepository } from "../../repositories/Comment/getMessageRepository/getMessage";
+import { GetCommentRepository } from "../../repositories/Message/getMessageRepository/getMessage";
+import { GetCommentParams } from "../../controllers/Message/getMessageController/protocols";
+import { GetCommentController } from "../../controllers/Message/getMessageController/getMessage";
 
 async function Get(app: FastifyInstance) {
   app.get("/comment/:post", async (request, reply) => {
@@ -9,6 +9,8 @@ async function Get(app: FastifyInstance) {
 
     const getCommentRepository = new GetCommentRepository();
     const getCommentController = new GetCommentController(getCommentRepository);
+
+    
 
     try {
       const { body, statusCode } = await getCommentController.handle({

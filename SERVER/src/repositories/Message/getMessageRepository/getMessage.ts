@@ -1,7 +1,7 @@
 import {
   GetCommentParams,
   IGetCommentRepository,
-} from "../../../controllers/Comment/getCommentController/protocols";
+} from "../../../controllers/Message/getMessageController/protocols";
 import { Message } from "../../../controllers/protocols";
 import Comment from "../../../models/comment";
 import prisma from "../../../services/prisma";

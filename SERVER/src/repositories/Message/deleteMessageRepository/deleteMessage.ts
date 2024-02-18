@@ -1,7 +1,7 @@
 import {
   DeleteCommentParams,
   IDeleteCommentRepository,
-} from "../../../controllers/Comment/deleteCommentController/protocols";
+} from "../../../controllers/Message/deleteMessageController/protocols";
 import { Message } from "../../../controllers/protocols";
 import Comment from "../../../models/comment";
 import prisma from "../../../services/prisma";

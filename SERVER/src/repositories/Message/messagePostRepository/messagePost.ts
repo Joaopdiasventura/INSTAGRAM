@@ -1,7 +1,4 @@
-import {
-  CommentPostParams,
-  ICommentPostRepository,
-} from "../../../controllers/Comment/commentPostController/protocols";
+import { CommentPostParams, ICommentPostRepository } from "../../../controllers/Message/messagePostController/protocols";
 import { Message } from "../../../controllers/protocols";
 import Comment from "../../../models/comment";
 import prisma from "../../../services/prisma";

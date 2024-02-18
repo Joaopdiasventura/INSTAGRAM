@@ -6,6 +6,8 @@ import { UpdateImageRepository } from "../../repositories/User/updateImageReposi
 import { UpdateBioParams } from "../../controllers/User/updateBioController/protocols";
 import { UpdateBioController } from "../../controllers/User/updateBioController/updateBio";
 import { UpdateBioRepository } from "../../repositories/User/updateBioRepository/updateBio";
+import { text } from "../../middlewares";
+import { file } from "../../middlewares";
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
@@ -21,6 +23,14 @@ async function Updates(app: FastifyInstance): Promise<void> {
         email: req.body.email,
         file: req.file,
       };
+ 
+      const fields = ["file", "email"];
+      const validation = text(Body, fields);
+  
+      if (validation) {
+        reply.status(validation.statusCode).send(validation.body);
+        return;
+      }
 
       const updateImageRepository = new UpdateImageRepository();
       const updateImageController = new UpdateImageController(
@@ -40,6 +50,14 @@ async function Updates(app: FastifyInstance): Promise<void> {
 
   app.post("/updateBio", async (request, reply) => {
     const Body = request.body as UpdateBioParams;
+
+    const fields = ["bio", "email"];
+    const validation = text(Body, fields);
+
+    if (validation) {
+      reply.status(validation.statusCode).send(validation.body);
+      return;
+    }
 
     const updateBioReposiotry = new UpdateBioRepository();
     const updateBioController = new UpdateBioController(updateBioReposiotry);

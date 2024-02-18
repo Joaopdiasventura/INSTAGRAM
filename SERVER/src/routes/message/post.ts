@@ -1,7 +1,8 @@
 import { FastifyInstance } from "fastify";
-import { CommentPostController } from "../../controllers/Comment/commentPostController/commentPost";
-import { CommentPostParams } from "../../controllers/Comment/commentPostController/protocols";
-import { CommentPostRepository } from "../../repositories/Comment/messagePostRepository/messagePost";
+import { CommentPostController } from "../../controllers/Message/messagePostController/messagePost";
+import { CommentPostParams } from "../../controllers/Message/messagePostController/protocols";
+import { CommentPostRepository } from "../../repositories/Message/messagePostRepository/messagePost";
+import { text } from "../../middlewares";
 
 async function Post(app: FastifyInstance) {
   app.post("/comment", async (request, reply) => {
@@ -11,6 +12,14 @@ async function Post(app: FastifyInstance) {
     const commentPostController = new CommentPostController(
       commentPostRepository
     );
+ 
+    const fields = ["content", "email", "post"];
+    const validation = text(Body, fields);
+
+    if (validation) {
+      reply.status(validation.statusCode).send(validation.body);
+      return;
+    }
 
     try {
       const { body, statusCode } = await commentPostController.handle({

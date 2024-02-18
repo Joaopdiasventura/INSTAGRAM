@@ -36,7 +36,8 @@ async function Register(app: FastifyInstance) {
   app.post("/register", async (request, reply) => {
     const Body = request.body as RegisterUserParams;
 
-    const validation = text(Body, ["name", "email", "password"]);
+    const fields = ["name", "email", "password"];
+    const validation = text(Body, fields);
 
     if (validation) {
       reply.status(validation.statusCode).send(validation.body);

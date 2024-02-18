@@ -2,7 +2,6 @@ import {
   HttpRequest,
   HttpResponse,
   IController,
-  Message,
 } from "../../protocols";
 import { DeleteCommentParams, IDeleteCommentRepository } from "./protocols";
 import Comment from "../../../models/comment";

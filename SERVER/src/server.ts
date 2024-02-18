@@ -1,7 +1,7 @@
 import { FastifyInstance } from "fastify";
-import { AddressInfo } from "net";
+import app from "./app";
 
-export default async function startServer(app: FastifyInstance) {
+async function startServer(app: FastifyInstance) {
   try {
     const port = parseInt(process.env.PORT || "3000");
 
@@ -12,3 +12,5 @@ export default async function startServer(app: FastifyInstance) {
     process.exit(1);
   }
 }
+
+startServer(app);
