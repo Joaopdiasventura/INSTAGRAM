@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "INSTAGRAM",
+    "slug": "INSTAGRAM",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icone.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/icone.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#000"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icone.png",
+        "backgroundColor": "#000"
+      },
+      "package": "com.jpplay2_1.INSTAGRAM"
+    },
+    "web": {
+      "favicon": "./assets/icone.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "899e67d5-1fa7-4c4e-8e03-f2b3c7a909ec"
+      }
+    }
+  }
+}
