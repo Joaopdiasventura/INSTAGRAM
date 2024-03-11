@@ -4,7 +4,7 @@ import { GetUserParams } from "../../controllers/User/getUserController/protocol
 import { RegisterUserParams } from "../../controllers/User/registerUserController/protocols";
 import { RegisterUserController } from "../../controllers/User/registerUserController/registerUser";
 import { RegisterUserRepository } from "../../repositories/User/registerUserRepository/registerUser";
-import IsAll from "../../middlewares/user/register";
+import {text} from "../../middlewares/index";
 
 async function Register(app: FastifyInstance) {
   const Axios = axios.create({
@@ -36,7 +36,8 @@ async function Register(app: FastifyInstance) {
   app.post("/register", async (request, reply) => {
     const Body = request.body as RegisterUserParams;
 
-    const validation = IsAll(Body);
+    const fields = ["name", "email", "password"];
+    const validation = text(Body, fields);
 
     if (validation) {
       reply.status(validation.statusCode).send(validation.body);

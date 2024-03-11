@@ -6,7 +6,8 @@ import { UpdateImageRepository } from "../../repositories/User/updateImageReposi
 import { UpdateBioParams } from "../../controllers/User/updateBioController/protocols";
 import { UpdateBioController } from "../../controllers/User/updateBioController/updateBio";
 import { UpdateBioRepository } from "../../repositories/User/updateBioRepository/updateBio";
-import IsAll from "../../middlewares/user/update";
+import { text } from "../../middlewares";
+import { file } from "../../middlewares";
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
@@ -22,9 +23,10 @@ async function Updates(app: FastifyInstance): Promise<void> {
         email: req.body.email,
         file: req.file,
       };
-
-      const validation = IsAll(Body);
-
+ 
+      const fields = ["file", "email"];
+      const validation = text(Body, fields);
+  
       if (validation) {
         reply.status(validation.statusCode).send(validation.body);
         return;
@@ -49,7 +51,8 @@ async function Updates(app: FastifyInstance): Promise<void> {
   app.post("/updateBio", async (request, reply) => {
     const Body = request.body as UpdateBioParams;
 
-    const validation = IsAll(Body);
+    const fields = ["bio", "email"];
+    const validation = text(Body, fields);
 
     if (validation) {
       reply.status(validation.statusCode).send(validation.body);

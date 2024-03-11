@@ -6,8 +6,9 @@
   "license": "MIT",
   "scripts": {
     "install-deps": "yarn install && prisma generate",
-    "build-and-start": "tsc && node dist/app.js",
-    "dev": "nodemon --watch src --exec ts-node src/app.ts -e ts"
+    "build-and-start": "tsc && node dist/src/server.js",
+    "dev": "nodemon --watch src --exec ts-node src/server.ts -e ts",
+    "test": "jest"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.504.0",
@@ -28,11 +29,15 @@
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
     "@types/estree": "^1.0.5",
+    "@types/jest": "^29.5.12",
     "@types/jsonwebtoken": "^9.0.5",
     "@types/multer": "^1.4.11",
     "@types/multer-s3": "^3.0.3",
     "@typescript-eslint/eslint-plugin": "^6.20.0",
     "@typescript-eslint/parser": "^6.20.0",
-    "eslint": "^8.56.0"
+    "eslint": "^8.56.0",
+    "jest": "^29.7.0",
+    "supertest": "^6.3.4",
+    "ts-jest": "^29.1.2"
   }
 }

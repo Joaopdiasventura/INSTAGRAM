@@ -3,7 +3,7 @@ import { upload } from "../../services/aws";
 import { CreatePostController } from "../../controllers/Post/createPostRepository/createPost";
 import { CreatePostParams } from "../../controllers/Post/createPostRepository/protocols";
 import { CreatePostRepository } from "../../repositories/Post/createPostRepository/createPost";
-import IsAll from "../../middlewares/post/post";
+import { file } from "../../middlewares";
 
 async function Post(app: FastifyInstance) {
   app.post(
@@ -11,16 +11,20 @@ async function Post(app: FastifyInstance) {
     { preHandler: upload.single("file") as RouteHandlerMethod },
     async (request, reply) => {
       const Body = request.body as CreatePostParams;
-      const file = (request as any).file;
-      Body.url_image = file.location;
-
-      const validation = IsAll(Body);
-
+      const File = (request as any).file;
+      
+      Body.url_image = File;
+ 
+      const fields = ["url_image", "fk_user_email"];
+      const validation = file(Body, fields);
+  
       if (validation) {
         reply.status(validation.statusCode).send(validation.body);
         return;
       }
 
+      Body.url_image = File.location;
+      
       const createPostRepository = new CreatePostRepository();
       const createPostController = new CreatePostController(
         createPostRepository
